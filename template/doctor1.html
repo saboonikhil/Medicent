@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>  </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/signup.css">
+  	<link rel="stylesheet" href="../static/css/sb-admin.css">
+	<style type="text/css">
+        html{
+            overflow-y: ;
+        }
+		.left-bar{
+			height: 45.5em;
+			width: 60%;
+			background-color: #343A40;
+		}
+		a{
+			color: white;
+		}
+		.hide{
+			display: none;
+		}
+        .bold{
+            font-weight: bold;
+        }
+        .bdlo{
+            width:250px;
+        }
+        .text0{
+            color:black;
+            font-weight: bold;
+        }
+
+	</style>
+</head>
+
+<body>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+          <img src="{{ static_url("images/first-aid.png")}}" id="brand" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/"> About <span class="sr-only">(About)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""> {{Name}} <span class="sr-only">(name)</span></a>
+            </li>
+            <!--<li class="nav-item active">-->
+                <!--<a class="nav-link" href="/Signup"> Signup <span class="sr-only">(Signup)</span></a>-->
+            <!--</li>-->
+          </ul>
+          <span class="navbar-text">
+              <a href="">GitHub Profile</a>
+          </span>
+      </div>
+ </nav>
+ <div class="row">
+	 <div class="left-bar col-md-2">
+		 		<br>
+			 <a class="btn" id="appoint" href="">Patient appointment</a>
+		 		<br>
+			 <a class="btn" id="logout" href="/logout">Logout</a>
+		 		<br>
+			 <a class="btn" id="detail" href="">Your details</a>
+	 </div>
+		<div class="container col-md-10 right-bar">
+            <div class="hide" id="detailss">
+         <div class="card card-register mx-auto mt-5 bg-dark ">
+      <div class="card-header">Your details</div>
+      <div class="card-body">
+        <div class="was-validated" id="regis" style="">
+            <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <img src="{{dat['img']}}" style="width:160px;height:250px;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <span class="bold">First name</span>: {{dat['fname']}}
+              </div>
+            </div>
+          </div>
+            <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <span class="bold">Last name</span>: {{dat['lname']}}
+              </div>
+            </div>
+          </div>
+            <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <span class="bold">email</span>: {{dat['email']}}
+              </div>
+            </div>
+          </div>
+            <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <span class="bold">Address</span>: {{dat['address']}}
+              </div>
+            </div>
+          </div>
+            <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                  <span><h5>appointments</h5></span>
+                  <br>Patients:
+                    {% for i in dat['plist']%}
+                        <br>{{i}}
+                    {%end%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  </div>
+	 </div>
+            <div class="appointment">
+            {% for i in resp %}
+            <div class="card card-register mx-auto mt-5 bg-dark bdlo">
+                <div class="card-header">{{i['fname']}} {{i['lname']}}</div>
+                    <div class="card-body">
+                        <hr style="{height:150px;}">
+                        <img src="{{i['img']}}" style="width:160px;height:200px;">
+                        <br><span class="text0">symptoms: </span><br>
+                        {{i['ap_details']['symptoms']}}
+                        <br><span class="text0">description: </span><br>
+                        {{i['ap_details']['situation']}}
+                    </div>
+                </div>
+                {%end%}
+ 	        </div>
+
+ </div>
+ </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+ <script>
+	  $().ready(function() {
+        $(function () {
+          $("#appoint").click(function(e){
+              e.preventDefault();
+              console.log('appoint clicked !');
+              $(".appointement").show();
+			  $("#detailss").hide();
+	  });
+	 $("#detail").click(function(e){
+	     e.preventDefault();
+	     console.log('detail clicked !');
+	      $(".appointment").hide();
+	      $("#detailss").show();
+
+        });
+	  });
+});
+
+ </script>
+</body>
+
+</html>
